@@ -1,0 +1,27 @@
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th scope="col">Student Id</th>
+      <th scope="col">First Name</th>
+      <th scope="col">Last Name</th>
+      <th scope="col">Email</th>
+      <th scope="col">Action</th>
+
+    </tr>
+  </thead>
+  <tbody>
+    {{#each studentGrp}}
+    <tr>
+      <th scope="row">{{this.id}}</th>
+      <td>{{this.firstName}}</td>
+      <td>{{this.lastName}}</td>
+      <td>{{this.email}}</td>
+      <td>
+        <a href="/student/profile/{{this.id}}" class="badge  badge-secondary">View Marks</a>
+        <a href="/student/update/{{this.id}}" class="badge  badge-primary">Update Marks</a>
+        <a href="/student/remove/{{this.id}}/{{../teacherID}}"><i class="fa fa-times" aria-hidden="true"></i></a>
+      </td>
+    </tr>
+    {{/each}}
+  </tbody>
+</table>

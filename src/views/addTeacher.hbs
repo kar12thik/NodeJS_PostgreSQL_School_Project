@@ -1,0 +1,58 @@
+{{!-- {{#section 'addTeacherForm'}} --}}
+<form id="addTeacherForm" method="POST" action="/admin/addteacher">
+  <div class="form-group">
+    <label>AdminId</label> <input type="text" name="adminId" class="form-control">
+  </div>
+  <div class="form-group">
+    <label>First Name</label>
+    <input type="text" name="firstName" class="form-control" placeholder="First Name">
+  </div>
+  <div class="form-group">
+    <label>Last Name</label>
+    <input type="text" name="lastName" class="form-control" placeholder="Last Name">
+  </div>
+  <div class="form-group">
+    <label>Email address</label>
+    <input type="email" name="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+      placeholder="Enter email">
+    <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+  </div>
+  <div class="form-group">
+    <label for="pwd1">Password</label>
+    <input id="pwd1" type="password" name="password" class="form-control" placeholder="Password">
+  </div>
+  <div class="form-group">
+    <label for="pwd2">Confirm Password</label>
+    <div id="pwdCheck"></div>
+    <input id="pwd2" type="password" name="password1" class="form-control" placeholder="Password">
+  </div>
+  <div class="ShowPasswordNotMatchesError" style="display:none;color:red">
+    * Password Mismatch
+  </div>
+  <button type="submit" class="btn btn-primary">Add</button>
+</form>
+<script>
+  $("#addTeacherForm").submit(function (e) {
+    e.preventDefault();
+    var url = $("#addTeacherForm").attr("action")
+    var pwd1 = $('#pwd1').val();
+    var pwd2 = $('#pwd2').val();
+    if (pwd1 !== pwd2 && pwd1.length > 0 && pwd2.length > 0)
+      $('.ShowPasswordNotMatchesError').show();
+    else {
+      $('.ShowPasswordNotMatchesError').hide();
+      var form_data = $(this).serializeArray();
+      $.ajax({
+        type: "POST",
+        url: url,
+        data: form_data,
+        cache: false,
+      }).done(function (msg) {
+        console.log("1-done!");
+        location.reload();
+
+      })
+    };
+  }
+  )
+</script>

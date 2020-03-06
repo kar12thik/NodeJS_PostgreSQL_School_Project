@@ -1,0 +1,57 @@
+<form id="updateStudentMark" method="POST" action="/student/update/{{studentId}}">
+  <div class="form-group">
+    <label>TeacherId</label> <input id="teacherId" type="text" name="teacherId" class="form-control">
+  </div>
+  <div class="form-group">
+    <label>Maths</label>
+    <input id="maths" type="number" name="maths" class="form-control">
+  </div>
+  <div class="form-group">
+    <label>Science</label>
+    <input id="science" type="number" name="science" class="form-control">
+  </div>
+  <div class="form-group">
+    <label>Social</label>
+    <input id="social" type="number" name="social" class="form-control">
+  </div>
+  <div class="form-group">
+    <label>First Language</label>
+    <input id="firstLanguage" type="number" name="firstLanguage" class="form-control">
+  </div>
+  <div class="form-group">
+    <label>Second Language</label>
+    <input id="secondLanguage" type="number" name="secondLanguage" class="form-control">
+  </div>
+  <div class="updateAllFields" style="display:none;color:red">
+    * Please Update all the fields
+  </div>
+  <button type="submit" class="btn btn-primary">Update</button>
+</form>
+<script>
+  $("#updateStudentMark").submit(function (e) {
+    e.preventDefault();
+    var url = $("#updateStudentMark").attr("action")
+    var teacherId = $('#teacherId').val()
+    var maths = $('#maths').val();
+    var science = $('#science').val();
+    var social = $('#social').val();
+    var firstLanguage = $('#firstLanguage').val();
+    var secondLanguage = $('#secondLanguage').val();
+    if (maths == "" || science == "" || social == "" || firstLanguage == "" || secondLanguage == "")
+      $('.updateAllFields').show();
+    else {
+      $('.updateAllFields').hide();
+      var form_data = $(this).serializeArray();
+      $.ajax({
+        type: "POST",
+        url: url,
+        data: form_data,
+        cache: false,
+      }).done(function (msg) {
+        console.log("1-done!");
+        window.location.href = "https://dyplv.sse.codesandbox.io/teacher/profile/" + teacherId
+      })
+    };
+  }
+  )
+</script>

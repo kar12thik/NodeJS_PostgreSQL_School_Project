@@ -1,0 +1,42 @@
+<div id="updateTeacher">
+  <button id="addTeacher" type="button" class="btn btn-primary btn-lg">Add Teacher</button>
+  {{!-- <button id="removeTeacher" type="button" class="btn btn-secondary btn-lg">Remove Teacher</button> --}}
+</div>
+<div id="teacherForm"></div>
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th scope="col">Teacher Id</th>
+      <th scope="col">First Name</th>
+      <th scope="col">Last Name</th>
+      <th scope="col">Email</th>
+      <th scope="col">Students</th>
+
+    </tr>
+  </thead>
+  <tbody>
+    {{#each teacherGrp}}
+    <tr>
+      <th scope="row">{{this.id}}</th>
+      <td>{{this.firstName}}</td>
+      <td>{{this.lastName}}</td>
+      <td>{{this.email}}</td>
+      <td>
+        <a href="/teacher/profile/{{this.id}}" class="badge  badge-secondary">View Students</a>
+        <a href="/admin/addStudent/{{this.id}}" class="badge  badge-primary">Add Students</a>
+        <a href="/teacher/remove/{{this.id}}"><i class="fa fa-times" aria-hidden="true"></i></a>
+      </td>
+    </tr>
+    {{/each}}
+  </tbody>
+</table>
+
+<script type="text/javascript">
+  $("#addTeacher").click(function () {
+    $.get("/admin/addteacher", function (data, status) {
+      $("#teacherForm").html(data)
+    })
+  })
+
+
+</script>

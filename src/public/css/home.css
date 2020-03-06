@@ -1,0 +1,26 @@
+body {
+  margin: 100px;
+}
+.jumbotron {
+  text-align: center;
+}
+.jumbotron .btn {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+#updateTeacher {
+  text-align: center;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+#addTeacherForm button {
+  margin-left: 48%;
+  margin-bottom: 15px;
+}
+
+.fa.fa-times {
+  margin-left: 10px;
+  color: red;
+}
